@@ -29,5 +29,4 @@ public class AppUser {
     )
     @OrderColumn(name = "id")
     private Set<Role> roles = new HashSet<>();
-    //private String role;
 }
