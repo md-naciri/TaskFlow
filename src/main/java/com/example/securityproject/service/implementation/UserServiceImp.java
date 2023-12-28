@@ -23,6 +23,15 @@ public class UserServiceImp implements UserService {
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
 
+    @Override
+    public UserDetailsService userDetailsService() {
+        return new UserDetailsService() {
+            @Override
+            public UserDetails loadUserByUsername(String username) {
+                return userRepo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            }
+        };
+    }
 
 //    @Override
 //    public List<AppUser> getAllUsers() {
@@ -49,4 +58,5 @@ public class UserServiceImp implements UserService {
 //    private static List<GrantedAuthority> getAuthorities(AppUser appUser) {
 //        return List.of(new SimpleGrantedAuthority(appUser.getRoles().toString()));
 //    }
+
 }
