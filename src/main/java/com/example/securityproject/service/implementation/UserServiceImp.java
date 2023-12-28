@@ -19,40 +19,34 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImp implements UserService, UserDetailsService {
+public class UserServiceImp implements UserService {
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
 
-    @Override
-    public List<AppUser> getAllUsers() {
-        return userRepo.findAll();
-    }
 
-    @Override
-    public AppUser getUserById(Long id) {
-        return userRepo.findById(id).orElse(null);
-    }
+//    @Override
+//    public List<AppUser> getAllUsers() {
+//        return userRepo.findAll();
+//    }
+//
+//    @Override
+//    public AppUser getUserById(Long id) {
+//        return userRepo.findById(id).orElse(null);
+//    }
+//
+//    @Override
+//    public AppUser saveUser(AppUser appUser) {
+//        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
+//        return userRepo.save(appUser);
+//    }
 
-    @Override
-    public AppUser saveUser(AppUser appUser) {
-        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
-        return userRepo.save(appUser);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<AppUser> appUser = userRepo.findByUsername(username);
-        appUser.orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return new User(appUser.get().getUsername(), appUser.get().getPassword(), getAuthorities(appUser.get()));
-    }
-    private static List<GrantedAuthority> getAuthorities(AppUser appUser) {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        if (!appUser.getRoles().isEmpty()) {
-            appUser.getRoles().forEach(role -> {
-                authorities.add(new SimpleGrantedAuthority(role.getName()));
-            });
-        }
-        List<GrantedAuthority> authorities1 = authorities;
-        return authorities;
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        Optional<AppUser> appUser = userRepo.findByUsername(username);
+//        appUser.orElseThrow(() -> new UsernameNotFoundException("User not found"));
+//        return new User(appUser.get().getUsername(), appUser.get().getPassword(), getAuthorities(appUser.get()));
+//    }
+//    private static List<GrantedAuthority> getAuthorities(AppUser appUser) {
+//        return List.of(new SimpleGrantedAuthority(appUser.getRoles().toString()));
+//    }
 }

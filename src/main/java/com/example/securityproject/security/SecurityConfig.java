@@ -20,7 +20,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.Collections;
 
-@Configuration
+
 @EnableWebSecurity
 @RequiredArgsConstructor
 //@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
@@ -57,7 +57,9 @@ public class SecurityConfig{
     }*/
     @Bean
     public AuthenticationManager authenticationManager() {
+        //DaoAuthenticationProvider — uses a UserDetailsService to retrieve user details from database and compare credentials.
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        //The UserDetailsService is an interface which retrieves user details during the authentication process. It is often used in conjunction with Authentication Providers to obtain user details from the database for authentication.
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder);
 
