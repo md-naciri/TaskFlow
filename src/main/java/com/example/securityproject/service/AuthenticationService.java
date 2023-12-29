@@ -7,5 +7,4 @@ import com.example.securityproject.dao.response.JwtAuthenticationResponse;
 public interface AuthenticationService {
     JwtAuthenticationResponse signUp(SignUpRequest signUpRequest);
     JwtAuthenticationResponse signIn(SignInRequest signInRequest);
-
 }
