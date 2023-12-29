@@ -10,6 +10,7 @@ import com.example.securityproject.service.AuthenticationService;
 import com.example.securityproject.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,9 @@ public class AuthenticationServiceImp implements AuthenticationService {
 
     @Override
     public JwtAuthenticationResponse signIn(SignInRequest signInRequest) {
-//        authenticationManager.authenticate()
-        return null;
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInRequest.getUsername(), signInRequest.getPassword()));
+        var user = userRepo.findByUsername(signInRequest.getUsername()).orElseThrow(() -> new IllegalArgumentException("Invalid username or password"));
+        var jwt = jwtService.generateToken(user);
+        return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 }
