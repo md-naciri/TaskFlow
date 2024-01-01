@@ -17,9 +17,9 @@ public record TaskRequestVM(
         LocalDate startDate,
         LocalDate endDate,
         @NotNull(message = "Status cannot be null")
-        TaskStatus status,
-        @Size(min = 1, message = "At least one tag is required")
-        Set<String> tags
+        TaskStatus status
+//        @Size(min = 1, message = "At least one tag is required")
+//        Set<String> tags
 ) {
     public Task toTask() {
         return Task.builder()

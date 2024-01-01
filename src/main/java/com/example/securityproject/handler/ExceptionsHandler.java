@@ -19,7 +19,6 @@ public class ExceptionsHandler {
         Map<String, String> errors = new HashMap<>();
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         fieldErrors.stream().map(error -> errors.put(error.getField(), error.getDefaultMessage())).collect(Collectors.toList());
-        //return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
         return ResponseEntity.badRequest().body(errors);
     }
 

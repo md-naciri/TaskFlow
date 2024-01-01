@@ -18,9 +18,9 @@ public class TaskServiceImp implements TaskService {
         if (task.getStartDate().isBefore(LocalDate.now())) {
             throw new OperationException("Cannot create a task in the past.");
         }
-        if (task.getTags() == null || task.getTags().isEmpty()) {
-            throw new OperationException("A task must have at least one tag.");
-        }
+//        if (task.getTags() == null || task.getTags().isEmpty()) {
+//            throw new OperationException("A task must have at least one tag.");
+//        }
         if (task.getStartDate().isAfter(LocalDate.now().plusDays(3))) {
             throw new OperationException("Tasks cannot be scheduled more than 3 days in advance.");
         }
