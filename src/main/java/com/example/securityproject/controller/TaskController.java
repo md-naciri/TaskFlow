@@ -18,7 +18,7 @@ public class TaskController {
     private final TaskService taskService;
     @PostMapping
     public ResponseEntity<?> createTask(@RequestBody @Valid TaskRequestVM taskRequestVM) {
-        Task task = taskService.createTask(taskRequestVM.toTask());
+        Task task = taskService.createTask(taskRequestVM.toTask(), taskRequestVM.tags());
         return ResponseHandler.created(TaskResponseVM.fromTask(task), "Task created successfully");
     }
     @GetMapping("/{id}")

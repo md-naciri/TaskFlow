@@ -31,31 +31,4 @@ public class UserServiceImp implements UserService {
         };
     }
 
-
-//    @Override
-//    public List<AppUser> getAllUsers() {
-//        return userRepo.findAll();
-//    }
-//
-//    @Override
-//    public AppUser getUserById(Long id) {
-//        return userRepo.findById(id).orElse(null);
-//    }
-//
-//    @Override
-//    public AppUser saveUser(AppUser appUser) {
-//        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
-//        return userRepo.save(appUser);
-//    }
-
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        Optional<AppUser> appUser = userRepo.findByUsername(username);
-//        appUser.orElseThrow(() -> new UsernameNotFoundException("User not found"));
-//        return new User(appUser.get().getUsername(), appUser.get().getPassword(), getAuthorities(appUser.get()));
-//    }
-//    private static List<GrantedAuthority> getAuthorities(AppUser appUser) {
-//        return List.of(new SimpleGrantedAuthority(appUser.getRoles().toString()));
-//    }
-
 }

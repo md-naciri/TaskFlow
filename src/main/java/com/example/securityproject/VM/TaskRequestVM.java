@@ -1,5 +1,6 @@
 package com.example.securityproject.VM;
 
+import com.example.securityproject.entity.Tag;
 import com.example.securityproject.entity.Task;
 import com.example.securityproject.entity.TaskStatus;
 import jakarta.validation.constraints.FutureOrPresent;
@@ -17,9 +18,9 @@ public record TaskRequestVM(
         LocalDate startDate,
         LocalDate endDate,
         @NotNull(message = "Status cannot be null")
-        TaskStatus status
-//        @Size(min = 1, message = "At least one tag is required")
-//        Set<String> tags
+        TaskStatus status,
+        @Size(min = 1, message = "At least one tag is required")
+        Set<String> tags
 ) {
     public Task toTask() {
         return Task.builder()
@@ -28,7 +29,6 @@ public record TaskRequestVM(
                 .startDate(startDate)
                 .endDate(endDate)
                 .status(status)
-                // .tags(lookupTags(tags)) // This is a placeholder for tag lookup logic
                 .build();
     }
 }

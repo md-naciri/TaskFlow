@@ -9,8 +9,8 @@ public record TaskResponseVM(
         String description,
         LocalDate startDate,
         LocalDate endDate,
-        String status//,
-        //Set<String> tags
+        String status,
+        Set<String> tags
 ) {
     public static TaskResponseVM fromTask(Task task) {
         return new TaskResponseVM(
@@ -19,8 +19,8 @@ public record TaskResponseVM(
                 task.getDescription(),
                 task.getStartDate(),
                 task.getEndDate(),
-                task.getStatus().name()//,
-                //task.getTags().stream().map(tag -> tag.getName()).collect(Collectors.toSet())
+                task.getStatus().name(),
+                task.getTags().stream().map(tag -> tag.getName()).collect(Collectors.toSet())
         );
     }
 }
